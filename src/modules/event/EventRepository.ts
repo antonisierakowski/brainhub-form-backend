@@ -2,6 +2,7 @@ import { EventRepositoryInterface } from './EventRepositoryInterface';
 import { injectable } from 'inversify';
 import { AbstractPostgresProvider } from '../db/AbstractDbProvider';
 import { EventJson } from './types';
+import { Table } from '../db/types';
 
 @injectable()
 export class EventRepository
@@ -12,7 +13,12 @@ export class EventRepository
     const query = await this.connection.getConnection();
 
     await query
-      .select('table');
+      .table(Table.Event)
+      .insert({
+        first_name: eventJson.firstName,
+        last_name: eventJson.lastName,
+        email: eventJson.email,
+        date: eventJson.date,
+      });
   }
-
 }

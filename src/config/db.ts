@@ -5,6 +5,7 @@ const {
   USER,
   PASSWORD,
   PORT,
+  DB,
 } = process.env;
 
 export const dbConfig: Knex.Config = {
@@ -14,6 +15,6 @@ export const dbConfig: Knex.Config = {
     port: Number(PORT),
     user: USER,
     password: PASSWORD,
-    database: 'brainhub-event-form',
+    database: DB,
   },
 };

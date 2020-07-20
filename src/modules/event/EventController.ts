@@ -4,7 +4,7 @@ import { EventServiceInterface } from './EventServiceInterface';
 import { Request } from 'express';
 import { eventModule } from './serviceIdentifiers';
 
-@controller('/')
+@controller('/event')
 export class EventController implements interfaces.Controller  {
 
   constructor(
