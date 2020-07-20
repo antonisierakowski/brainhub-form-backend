@@ -1,11 +1,11 @@
 import './config/envConfig';
 import 'reflect-metadata';
-import express from 'express';
+import container from './di/container';
+import { ExpressServer } from './modules/server/ExpressServer';
+import { serverModule } from './modules/server/module';
 
 const port = process.env.PORT || 3000;
 
-(async () => {
-  const app = express();
-  await app.listen(port);
-})();
+const server = container.get<ExpressServer>(serverModule.Server);
 
+server.listen(port as number);
