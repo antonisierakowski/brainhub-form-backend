@@ -1,12 +1,12 @@
 import { Container } from 'inversify';
-import { serverModuleLoader } from '../modules/server/module';
+import { eventModuleLoader } from '../modules/event/module';
 
 const container = new Container({
   defaultScope: 'Singleton',
 });
 
 const modules = [
-  serverModuleLoader,
+  eventModuleLoader,
 ];
 
 modules.forEach(module => module(container));
