@@ -1,17 +1,16 @@
 import { EventServiceInterface } from '../EventServiceInterface';
-import { EventJson } from '../types';
 import { EventController } from '../EventController';
 import { Response, Request } from 'express';
 import { createResponse } from '../../../utils/createResponse';
 
 class EventServiceMock implements EventServiceInterface {
-  createEvent(eventJson: EventJson): Promise<void> {
+  createEvent(): Promise<void> {
     return Promise.resolve();
   }
 }
 
 class EventServiceRejectMock implements EventServiceInterface {
-  createEvent(eventJson: EventJson): Promise<void> {
+  createEvent(): Promise<void> {
     return Promise.reject(new Error());
   }
 }
