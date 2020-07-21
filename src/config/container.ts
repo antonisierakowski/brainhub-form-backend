@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { BindingScopeEnum, Container } from 'inversify';
 import { eventModuleLoader } from '../modules/event/module';
 import { dbModuleLoader } from '../modules/db/module';
