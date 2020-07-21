@@ -4,7 +4,7 @@ import container from './config/container';
 import { InversifyExpressServer } from 'inversify-express-utils';
 import bodyParser from 'body-parser';
 import { Application } from 'express';
-import { exitHandler } from './exitHandler';
+import { exitHandler } from './utils/exitHandler';
 
 const port = process.env.REST_API_PORT || 3000;
 

@@ -1,8 +1,11 @@
 import { controller, httpPost, interfaces } from 'inversify-express-utils';
 import { inject } from 'inversify';
 import { EventServiceInterface } from './EventServiceInterface';
-import { Request } from 'express';
+import { Request, Response } from 'express';
 import { eventModule } from './serviceIdentifiers';
+import { StatusCode } from '../../utils/StatusCode';
+import { handleError } from '../../utils/handleError';
+import { createResponse } from '../../utils/createResponse';
 
 @controller('/event')
 export class EventController implements interfaces.Controller  {
@@ -13,8 +16,13 @@ export class EventController implements interfaces.Controller  {
   ) { }
 
   @httpPost('')
-  async submitEvent(req: Request) {
-    await this.eventService.createEvent(req.body);
+  async submitEvent(req: Request, res: Response): Promise<void> {
+    try {
+      await this.eventService.createEvent(req.body);
+      res.send(createResponse(StatusCode.OK));
+    } catch(error) {
+      handleError(res, error);
+    }
   }
 
 }

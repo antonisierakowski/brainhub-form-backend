@@ -1,6 +1,6 @@
 import joi from 'joi';
 
-const eventValidationSchema = joi.object({
+export const eventValidationSchema = joi.object({
   firstName: joi
     .string()
     .min(3)

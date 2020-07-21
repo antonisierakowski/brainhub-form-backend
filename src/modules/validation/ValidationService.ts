@@ -8,6 +8,6 @@ export class ValidationService<TData> implements ValidationServiceInterface<TDat
   ) { }
 
   validate(data: TData): joi.ValidationResult<TData> {
-    return joi.validate(data, this.validationSchema);
+    return this.validationSchema.validate(data);
   }
 }
