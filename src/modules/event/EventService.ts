@@ -6,7 +6,7 @@ import { EventJson } from './types';
 import { validationModule } from '../validation/serviceIdentifiers';
 import { ValidationServiceFactoryInterface } from '../validation/ValidationServiceFactoryInterface';
 import { ValidationServiceInterface } from '../validation/ValidationServiceInterface';
-import { eventValidationSchema } from './validationSchemas';
+import { eventValidationSchema } from './eventValidationSchema';
 import { ValidationException } from '../../exceptions/ValidationException';
 
 @injectable()
