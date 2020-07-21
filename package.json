@@ -10,7 +10,8 @@
     "build": "yarn check-code && tsc",
     "check-code": "eslint \"./src/**/*.ts\"",
     "fix-code": "eslint \"./src/**/*.ts\" --fix",
-    "init-db": "./db/create_db.sh"
+    "init-db": "./db/create_db.sh",
+    "test": "jest --config=jest.config.js"
   },
   "dependencies": {
     "@types/express": "^4.17.7",
