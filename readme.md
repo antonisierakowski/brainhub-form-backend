@@ -3,11 +3,14 @@ In project root run
 ```$xslt
 cp .env.dist .env
 ```
-and then edit your `.env` file to grant the app access to local postgres installation.  
-Make sure postgres is running, then run the following to start the server:
+then edit your `.env` file so the server can access local postgres installation.  
+Make sure postgres is running and run `yarn init-db` to set up the database.  
+Next: install dependencies, compile TypeScript and finally run the server:
 ```
 yarn
-yarn init-db
 yarn build
 yarn start
 ```
+Tests: `yarn test`  
+Linter: `yarn check-code` / `yarn fix-code`  
+Development mode: `yarn dev`
