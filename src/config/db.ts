@@ -18,3 +18,4 @@ export const dbConfig: Knex.Config = {
     database: DB,
   },
 };
+

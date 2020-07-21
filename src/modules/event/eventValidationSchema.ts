@@ -17,6 +17,5 @@ export const eventValidationSchema = joi.object({
     .required(),
   date: joi
     .date()
-    .greater(Date.now())
     .required(),
 });
