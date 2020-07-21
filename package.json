@@ -5,9 +5,8 @@
   "main": "run.js",
   "license": "MIT",
   "scripts": {
-    "start": "node ./dist/index.js",
+    "start": "node ./dist/run.js",
     "dev": "nodemon --watch '*.ts' --exec 'yarn check-code && ts-node' src/run.ts",
-    "prod": "yarn build && yarn start",
     "build": "yarn check-code && tsc",
     "check-code": "eslint \"./src/**/*.ts\"",
     "fix-code": "eslint \"./src/**/*.ts\" --fix",
