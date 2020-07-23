@@ -2,10 +2,17 @@ import { EventServiceInterface } from '../EventServiceInterface';
 import { EventController } from '../EventController';
 import { Response, Request } from 'express';
 import { createResponse } from '../../../utils/createResponse';
+import { ValidationException } from '../../../exceptions/ValidationException';
 
 class EventServiceMock implements EventServiceInterface {
   createEvent(): Promise<void> {
     return Promise.resolve();
+  }
+}
+
+class EventServiceRejectValidationMock implements EventServiceInterface {
+  createEvent(): Promise<void> {
+    return Promise.reject(new ValidationException('test'));
   }
 }
 
@@ -25,7 +32,9 @@ const reqMock: Request = {
 // @ts-ignore
 const resMock: Response = {
   send: jest.fn(),
-};
+  status: jest.fn(),
+}
+;
 
 describe('EventController', () => {
   describe('submitEvent method', () => {
@@ -34,6 +43,11 @@ describe('EventController', () => {
       const controller = new EventController(new EventServiceMock());
       await controller.submitEvent(reqMock, resMock);
 
+      expect(
+        resMock.status,
+      ).toHaveBeenCalledWith(
+        200,
+      );
       expect(
         resMock.send,
       ).toHaveBeenCalledWith(
@@ -44,10 +58,34 @@ describe('EventController', () => {
       ).toHaveBeenCalledTimes(1);
     });
 
-    it('should call handleError if eventService throws', async () => {
+    it('should call send response status 422 if validation error is thrown', async () => {
+      const controller = new EventController(new EventServiceRejectValidationMock());
+      await controller.submitEvent(reqMock, resMock);
+
+      expect(
+        resMock.status,
+      ).toHaveBeenCalledWith(
+        422,
+      );
+      expect(
+        resMock.send,
+      ).toHaveBeenCalledWith(
+        createResponse(422, 'test'),
+      );
+      expect(
+        resMock.send,
+      ).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call send response status 500 if unexpected error is thrown', async () => {
       const controller = new EventController(new EventServiceRejectMock());
       await controller.submitEvent(reqMock, resMock);
 
+      expect(
+        resMock.status,
+      ).toHaveBeenCalledWith(
+        500,
+      );
       expect(
         resMock.send,
       ).toHaveBeenCalledWith(
