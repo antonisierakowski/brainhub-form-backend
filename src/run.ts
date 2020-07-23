@@ -2,22 +2,18 @@ import './config/envConfig';
 import 'reflect-metadata';
 import container from './config/container';
 import { InversifyExpressServer } from 'inversify-express-utils';
-import bodyParser from 'body-parser';
-import { Application } from 'express';
 import { exitHandler } from './utils/exitHandler';
-import cors from 'cors';
+import { applyMiddleware } from './applyMiddleware';
 
 const port = process.env.REST_API_PORT || 8000;
 
 (async () => {
   const server = new InversifyExpressServer(container);
-  server.setConfig((app: Application) => {
-    app.use(cors());
-    app.use(bodyParser.json());
-  });
+  server.setConfig(applyMiddleware);
 
   const app = server.build();
-  app.listen(port);
+  await app.listen(port);
+  console.log(`Server started listening on port ${port}...`)
 
   process.on('SIGINT', exitHandler);
 

@@ -19,8 +19,10 @@ export class EventController implements interfaces.Controller  {
   async submitEvent(req: Request, res: Response): Promise<void> {
     try {
       await this.eventService.createEvent(req.body);
+      res.status(StatusCode.OK);
       res.send(createResponse(StatusCode.OK));
     } catch(error) {
+      console.log(error);
       handleError(res, error);
     }
   }
