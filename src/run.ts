@@ -13,7 +13,7 @@ const port = process.env.REST_API_PORT || 8000;
 
   const app = server.build();
   await app.listen(port);
-  console.log(`Server started listening on port ${port}...`)
+  console.log(`Server started listening on port ${port}...`);
 
   process.on('SIGINT', exitHandler);
 
