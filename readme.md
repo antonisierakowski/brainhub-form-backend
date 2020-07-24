@@ -1,4 +1,5 @@
-This repo hosts backend for brainhub-form recruitment task. In order to run, you need to have `node`, `yarn` and `postgresql` installed on your machine.  
+This repo hosts backend for brainhub-form recruitment task. [For the frontend part, visit this link.](https://github.com/antonisierakowski/brainhub-form-frontend)  
+In order to run, you need to have `node`, `yarn` and `postgresql` installed on your machine.  
 In project root run
 ```$xslt
 cp .env.dist .env
